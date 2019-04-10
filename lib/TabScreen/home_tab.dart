@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/Models/popular.dart';
-import 'package:netflix/TabScreen/film_detail_page.dart';
+import 'package:netflix/Page/film_detail_page.dart';
 
 class HomeTabPage extends StatefulWidget {
   @override
@@ -25,12 +25,31 @@ class _HomeTabPageState extends State<HomeTabPage> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
+        
         color: Colors.black,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            SizedBox(height: 20.0,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                Image.network(
+                    "http://icons.iconarchive.com/icons/papirus-team/papirus-apps/256/netflix-icon.png",
+                    width: 48,
+                    height: 48),
+                    FlatButton(
+                      child: Text("Series",style: TextStyle(color: Colors.white),),
+                    ), FlatButton(
+                      child: Text("Films",style: TextStyle(color: Colors.white),),
+                    ), FlatButton(
+                      child: Text("MyList",style: TextStyle(color: Colors.white),),
+                    )
+              ],
+            ),
             Image.network(
               "http://tr.web.img4.acsta.net/pictures/18/12/28/13/25/4689890.jpg",
               width: MediaQuery.of(context).size.width,
@@ -131,13 +150,15 @@ class _HomeTabPageState extends State<HomeTabPage> {
                 return Card(
                   child: Stack(
                     children: <Widget>[
-                        Positioned(
+                      Positioned(
                         bottom: 8.0,
                         right: 8.0,
                         child: RaisedButton(
                           color: Colors.white,
-                          child: Icon(Icons.play_arrow,color: Colors.black,),
-                      
+                          child: Icon(
+                            Icons.play_arrow,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                       Image.network(
@@ -145,7 +166,6 @@ class _HomeTabPageState extends State<HomeTabPage> {
                         fit: BoxFit.cover,
                         width: MediaQuery.of(context).size.width,
                       ),
-                      
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(populars[index].name,
@@ -164,7 +184,6 @@ class _HomeTabPageState extends State<HomeTabPage> {
                             style:
                                 TextStyle(color: Colors.white, fontSize: 15.0)),
                       ),
-                    
                       SizedBox(
                         height: 5.0,
                       )

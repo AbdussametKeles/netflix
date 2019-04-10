@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:netflix/Page/anasayfa.dart';
+import 'package:netflix/Page/home_screen.dart';
 
 class CreateProfilePage extends StatefulWidget {
   @override

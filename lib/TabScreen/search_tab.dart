@@ -28,59 +28,61 @@ class _SearchTabPageState extends State<SearchTabPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
+        color: Colors.black,
         child: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      mainAxisSize: MainAxisSize.max,
-      children: <Widget>[
-        TextField(
-          controller: editingController,
-          decoration: InputDecoration(
-            labelText: "Search",
-            hintText: "Search",
-            prefixIcon: Icon(Icons.search),
-          ),
-          onChanged: (value){
-            searchInList(value);
-          },
-        ),
-        Expanded(
-          child: GridView.builder(
-            gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2),
-            itemCount: image_urls.length,
-            itemBuilder: (context, position) {
-              return Container(
-                child: Image.network(image_urls[position]),
-              );
-            },
-          ),
-        )
-      ],
-    ));
-
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            TextField(
+              style: TextStyle(color: Colors.white),
+              controller: editingController,
+              decoration: InputDecoration(
+                labelText: "Search",
+                hintText: "Search",
+                labelStyle: TextStyle(color: Colors.grey),
+                hintStyle: TextStyle(color: Colors.grey),
+                prefixIcon: Icon(Icons.search),
+              ),
+              onChanged: (value) {
+                searchInList(value);
+              },
+            ),
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
+                itemCount: image_urls.length,
+                itemBuilder: (context, position) {
+                  return Container(
+                    child: Image.network(image_urls[position]),
+                  );
+                },
+              ),
+            )
+          ],
+        ));
   }
-  void searchInList(String filter){
 
+  void searchInList(String filter) {
     List<String> cloneList = [];
     cloneList.addAll(responseList);
-    if(!filter.isEmpty){
+    if (!filter.isEmpty) {
       List<String> responseData = List<String>();
-      cloneList.forEach((item){
-        if(item.contains(filter)){
+      cloneList.forEach((item) {
+        if (item.contains(filter)) {
           responseData.add(item);
         }
       });
       setState(() {
-       image_urls.clear();
-       image_urls.addAll(responseData); 
+        image_urls.clear();
+        image_urls.addAll(responseData);
       });
       return;
-    }else{
+    } else {
       setState(() {
         image_urls.clear();
         image_urls.addAll(cloneList);
       });
     }
-
   }
 }

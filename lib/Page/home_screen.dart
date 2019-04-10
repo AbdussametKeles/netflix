@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:netflix/TabScreen/download_tab.dart';
 import 'package:netflix/TabScreen/home_tab.dart';
-import 'package:netflix/TabScreen/films_tab.dart';
-import 'package:netflix/TabScreen/mylist_tab.dart';
+import 'package:netflix/TabScreen/more_tab.dart';
 import 'package:netflix/TabScreen/search_tab.dart';
 
 class AnaSayfa extends StatefulWidget {
@@ -16,14 +16,14 @@ class _AnaSayfaState extends State<AnaSayfa>
   List<Widget> _bottomList = [
     HomeTabPage(),
     SearchTabPage(),
-    FilmsTabPage(),
-    MyListTabPage()
+    DownloadTabPage(),
+    MoreTabPage()
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+       /* appBar: AppBar(
           leading: Image.network(
               "http://icons.iconarchive.com/icons/papirus-team/papirus-apps/256/netflix-icon.png",
               width: 48,
@@ -47,7 +47,7 @@ class _AnaSayfaState extends State<AnaSayfa>
               ))
             ],
           ),
-        ),
+        ),*/
         body: _bottomList[_currentIndex],
         bottomNavigationBar: Theme(
           data: Theme.of(context).copyWith(
