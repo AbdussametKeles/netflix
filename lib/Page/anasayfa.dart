@@ -4,7 +4,6 @@ import 'package:netflix/TabScreen/films_tab.dart';
 import 'package:netflix/TabScreen/mylist_tab.dart';
 import 'package:netflix/TabScreen/search_tab.dart';
 
-
 class AnaSayfa extends StatefulWidget {
   @override
   _AnaSayfaState createState() => _AnaSayfaState();
@@ -13,15 +12,13 @@ class AnaSayfa extends StatefulWidget {
 class _AnaSayfaState extends State<AnaSayfa>
     with SingleTickerProviderStateMixin {
   var _currentIndex = 0;
-  TabController _tabController;
-  List<Widget> _bottomList = [HomeTabPage(), SearchTabPage(), FilmsTabPage(), MyListTabPage()];
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _tabController = new TabController(length: 3, vsync: this);
-  }
+  List<Widget> _bottomList = [
+    HomeTabPage(),
+    SearchTabPage(),
+    FilmsTabPage(),
+    MyListTabPage()
+  ];
 
   @override
   Widget build(BuildContext context) {

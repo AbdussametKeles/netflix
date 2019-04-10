@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:netflix/Models/popular.dart';
 import 'package:netflix/TabScreen/film_detail_page.dart';
 
 class HomeTabPage extends StatefulWidget {
@@ -7,6 +8,19 @@ class HomeTabPage extends StatefulWidget {
 }
 
 class _HomeTabPageState extends State<HomeTabPage> {
+  List<Popular> populars = [
+    new Popular(
+        "Game of Thrones",
+        "http://idora.gazetevatan.com/vatanmediafile/Haber598x362/2015/11/23/game-of-thrones-un-yeni-sezon-afisinde-jon-snow-su-1858111.Jpeg",
+        "Savaş",
+        "2013"),
+    new Popular(
+        "Black Mirror",
+        "https://www.wannart.com/wp-content/uploads/2017/11/AAIA_wDGAAAAAQAAAAAAAAp5AAAAJDZkMDgzZWZiLWNlMGYtNGU5MC1iODExLTNmOWRiNDIxYjNmMQ-min-900x580-min-900x580.jpg",
+        "Gizem",
+        "2011")
+  ];
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -73,7 +87,8 @@ class _HomeTabPageState extends State<HomeTabPage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>FilmDetailPage()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => FilmDetailPage()));
                   },
                   child: Container(
                     decoration:
@@ -94,6 +109,69 @@ class _HomeTabPageState extends State<HomeTabPage> {
                   ),
                 ),
               ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: Text(
+                "Popular on Netflix",
+                style: TextStyle(color: Colors.white, fontSize: 25.0),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              itemExtent: 100.0,
+              itemCount: populars.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: Stack(
+                    children: <Widget>[
+                        Positioned(
+                        bottom: 8.0,
+                        right: 8.0,
+                        child: RaisedButton(
+                          color: Colors.white,
+                          child: Icon(Icons.play_arrow,color: Colors.black,),
+                      
+                        ),
+                      ),
+                      Image.network(
+                        populars[index].image_url,
+                        fit: BoxFit.cover,
+                        width: MediaQuery.of(context).size.width,
+                      ),
+                      
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(populars[index].name,
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 15.0)),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(populars[index].type,
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 15.0)),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(populars[index].year_of_construction,
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 15.0)),
+                      ),
+                    
+                      SizedBox(
+                        height: 5.0,
+                      )
+                    ],
+                  ),
+                );
+              },
             )
           ],
         ),

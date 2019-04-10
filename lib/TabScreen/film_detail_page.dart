@@ -16,9 +16,7 @@ class _FilmDetailPageState extends State<FilmDetailPage> {
         'https://www.youtube.com/watch?v=rlR4PJn8b8I')
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        setState(() {
-         
-        });
+        setState(() {});
       });
   }
 
@@ -71,7 +69,9 @@ class _FilmDetailPageState extends State<FilmDetailPage> {
                 aspectRatio: _controller.value.aspectRatio,
                 child: VideoPlayer(_controller),
               )
-            : Container(child: Text("Yükleniyor.."),),
+            : Container(
+                child: Text("Yükleniyor.."),
+              ),
         FloatingActionButton(
           onPressed: () {
             setState(() {
@@ -83,6 +83,33 @@ class _FilmDetailPageState extends State<FilmDetailPage> {
           child: Icon(
             _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
           ),
+        ),
+        RaisedButton.icon(
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                builder: (BuildContext bc) {
+                  return Container(
+                    child: new Wrap(
+                      children: <Widget>[
+                        new ListTile(
+                            leading: new Icon(Icons.mail),
+                            title: new Text('Gmail'),
+                            onTap: () => {}),
+                        new ListTile(
+                          leading: new Icon(Icons.message),
+                          title: new Text('Sms'),
+                          onTap: () => {},
+                        ),
+                      ],
+                    ),
+                  );
+                });
+          },
+          icon: Icon(
+            Icons.share,
+          ),
+          label: Text("Share"),
         )
       ]),
     );
